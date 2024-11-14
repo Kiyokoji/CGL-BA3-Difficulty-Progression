@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://di20navfpndkc" path="res://Assets/Fantasy Swamp Forest/Free/Terrain_and_Props.png" id="1_rswvv"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pp67i"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_as05r"]
 texture = ExtResource("1_rswvv")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -4.25, -3.75, -0.25, -1.625, 8, -8, 8)
@@ -467,7 +467,7 @@ texture = ExtResource("1_rswvv")
 
 [sub_resource type="TileSet" id="TileSet_ys063"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_pp67i")
+sources/0 = SubResource("TileSetAtlasSource_as05r")
 
 [node name="World" type="Node2D"]
 

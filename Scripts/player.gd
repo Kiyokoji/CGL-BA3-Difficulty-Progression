@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const Hook = preload("res://Scripts/hook_point.gd")
 
@@ -25,7 +26,8 @@ signal wall_grab_update(is_wallgrab)
 @export var walljump_speed 		: float = 1.3
 @export var min_jump_time 		: float = 0.3
 @export var wall_climp_speed 	: float = 30
-@export var hook_distance		: float = 75
+@export var hook_distance		: float = 85
+@export var launch_force		: float = 450
 
 @export var current_hook : HookPoint
 
@@ -302,7 +304,8 @@ func ground_rules() -> void:
 func launch_state() -> void:
 	if current_hook == null:
 		return
-	velocity = (current_hook.get_marker_pos() - global_position).normalized() * 700
+	velocity = (current_hook.get_marker_pos() - global_position).normalized() * launch_force
+	reset_jump()
 	move_and_slide()
 	state = CHARACTER_STATES.MOVE
 	pass
@@ -386,6 +389,15 @@ func jump_time() -> void:
 	return
 	await get_tree().create_timer(0.1).timeout
 	is_jump_pressed = false
+
+
+func reset_jump() -> void:
+	can_jump = false
+	walljump = false
+	is_jumping = false
+	is_jump_cancelled = false
+	is_jump_height_reached = false
+	is_jump_completed = false
 
 
 func set_jump_cancellable() -> void:

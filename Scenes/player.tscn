@@ -59,7 +59,7 @@ collide_with_bodies = false
 node_a = NodePath("..")
 softness = 16.0
 
-[node name="HookDetect" type="Area2D" parent="."]
+[node name="HookDetect" type="Area2D" parent="." groups=["HookArea"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HookDetect"]
 shape = SubResource("CircleShape2D_3vbop")
