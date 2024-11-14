@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvy7vrkfx13ar"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_uhhle"]
+[ext_resource type="Texture2D" uid="uid://cc3ngp7ba3pp" path="res://Assets/rope.png" id="2_6itjm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mdv5j"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vn5l"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vbop"]
+radius = 150.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(-2, 0)
+script = ExtResource("1_uhhle")
+attack_on = true
+jump_height = 4.0
+coyote_time_sec = 10.0
+min_jump_time = 0.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_mdv5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4vn5l")
+
+[node name="RaycastDown" type="RayCast2D" parent="."]
+
+[node name="RaycastRight" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+
+[node name="RaycastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-50, 0)
+
+[node name="RaycastLedgeRight" type="RayCast2D" parent="."]
+position = Vector2(0, -25)
+target_position = Vector2(50, 0)
+
+[node name="RaycastLedgeLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -25)
+target_position = Vector2(-50, 0)
+
+[node name="WallJumpDisabler" type="Timer" parent="."]
+
+[node name="Line2D" type="Line2D" parent="."]
+texture_repeat = 2
+points = PackedVector2Array(0, 0, 65, -19)
+width = 4.0
+texture = ExtResource("2_6itjm")
+texture_mode = 1
+
+[node name="HookRaycast" type="RayCast2D" parent="."]
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("..")
+softness = 16.0
+
+[node name="HookDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HookDetect"]
+shape = SubResource("CircleShape2D_3vbop")
+
+[connection signal="area_entered" from="HookDetect" to="." method="_on_hook_detect_area_entered"]
+[connection signal="area_exited" from="HookDetect" to="." method="_on_hook_detect_area_exited"]

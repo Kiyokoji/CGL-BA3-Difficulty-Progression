@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dayw8w2iytc3x"]
+
+[ext_resource type="PackedScene" uid="uid://bvy7vrkfx13ar" path="res://Scenes/player.tscn" id="1_p406v"]
+[ext_resource type="PackedScene" uid="uid://boql65hlvp6j1" path="res://Scenes/world.tscn" id="2_dyu8i"]
+[ext_resource type="PackedScene" uid="uid://d2hk8pqgyfvpv" path="res://Scenes/hook_point.tscn" id="3_sexny"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_p406v")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="World" parent="." instance=ExtResource("2_dyu8i")]
+
+[node name="HookPoint" parent="." instance=ExtResource("3_sexny")]
+position = Vector2(118, 0)
+
+[node name="HookPoint" parent="HookPoint" instance=ExtResource("3_sexny")]
+position = Vector2(-312, 0)

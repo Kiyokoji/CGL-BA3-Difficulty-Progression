@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvy7vrkfx13ar"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_uhhle"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mdv5j"]
+size = Vector2(16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4vn5l"]
+radius = 8.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(-2, 0)
+script = ExtResource("1_uhhle")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_mdv5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4vn5l")
+
+[node name="RaycastDown" type="RayCast2D" parent="."]
+
+[node name="RaycastRight" type="RayCast2D" parent="."]
+target_position = Vector2(50, 0)
+
+[node name="RaycastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-50, 0)
+
+[node name="RaycastLedgeRight" type="RayCast2D" parent="."]
+position = Vector2(0, -25)
+target_position = Vector2(50, 0)
+
+[node name="RaycastLedgeLeft" type="RayCast2D" parent="."]
+position = Vector2(0, -25)
+target_position = Vector2(-50, 0)
+
+[node name="WallJumpDisabler" type="Timer" parent="."]

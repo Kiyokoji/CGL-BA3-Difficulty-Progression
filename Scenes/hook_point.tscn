@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2hk8pqgyfvpv"]
+
+[ext_resource type="Script" path="res://Scripts/hook_point.gd" id="1_pdg6s"]
+[ext_resource type="Texture2D" uid="uid://ct4ijgmc0lq2i" path="res://Assets/target.png" id="1_vayhm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_73wry"]
+radius = 50.0
+
+[node name="HookPoint" type="Area2D" groups=["Hookable"]]
+script = ExtResource("1_pdg6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vayhm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_73wry")
+
+[node name="Marker2D" type="Marker2D" parent="."]
